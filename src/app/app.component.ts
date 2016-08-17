@@ -46,8 +46,6 @@ export class About { }
     nav { background:#158126; min-height:40px; border-bottom:5px #046923 solid; }
     nav a { font-weight:bold; text-decoration:none; color:#fff; padding:20px; display:inline-block; }
     nav a:hover { background:#00AF36; }
-    .hero-universal { min-height:500px; display:block; padding:20px; background: url('/assets/logo.png') no-repeat center center; }
-    .inner-hero { background: rgba(255, 255, 255, 0.75); border:5px #ccc solid; padding:25px; }
     .router-link-active { background-color: #00AF36; }
     blockquote { border-left:5px #158126 solid; background:#fff; padding:20px 20px 20px 40px; }
     blockquote::before { left: 1em; }
@@ -57,33 +55,19 @@ export class About { }
   template: `
   <h3 id="universal">Angular2 Universal</h3>
   <nav>
-    <a [routerLinkActive]="['active', 'router-link-active']" [routerLink]=" ['./home'] ">Home</a>
-    <a [routerLinkActive]="['active', 'router-link-active']" [routerLink]=" ['./about'] ">About</a>
+    <a [routerLinkActive]="['active', 'router-link-active']" [routerLink]=" ['./home'] ">{{ server }}</a>
   </nav>
-  <div class="hero-universal">
-    <div class="inner-hero">
-      <div>
-        <span x-large>Universal JavaScript {{ title }}!</span>
-      </div>
-
+  <div>
+      <span x-large>{{ title }}!</span>
       Two-way binding: <input type="text" [value]="title" (input)="title = $event.target.value" autofocus>
       <br><br>
-
       <strong>Async data call return value:</strong>
       <pre>{{ data | json }}</pre>
-
-      <strong>Router-outlet:</strong>
-      <main>
-        <router-outlet></router-outlet>
-      </main>
-
-      <blockquote>{{ server }}</blockquote>
-    </div>
   </div>
   `
 })
 export class App {
-  title: string = 'ftw';
+  title: string = 'Seema';
   data = {};
   server: string;
 
@@ -92,8 +76,8 @@ export class App {
   ngOnInit() {
     // limit the use of setTimeouts
     setTimeout(() => {
-      this.server = 'This was rendered from the server!';
-    }, 10);
+      this.server = 'This view was rendered from the server!';
+    }, 0);
 
     // use services for http calls
     this.http.get('/data.json')
